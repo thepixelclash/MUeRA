@@ -1,0 +1,5 @@
+# Never serve secrets or internals.
+<FilesMatch "^(config\.php|prompts\.php|config\.example\.php)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

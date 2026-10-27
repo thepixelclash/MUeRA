@@ -1,0 +1,12 @@
+/* Quiet navigation motion, no layout movement or continuous animation. */
+@keyframes muera-icon-wiggle {0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-2px) rotate(-8deg)}65%{transform:translateY(-1px) rotate(6deg)}}
+@keyframes muera-icon-turn {from{transform:rotate(0)}to{transform:rotate(90deg)}}
+@keyframes muera-icon-pop {0%,100%{transform:scale(1)}45%{transform:scale(1.16)}}
+@media (prefers-reduced-motion:no-preference) {
+ nav a svg {transform-origin:center;transition:transform 180ms ease;}
+ nav a:is(:hover,:focus-visible) svg {animation:muera-icon-wiggle 550ms ease both;}
+ nav a[href$="/settings"]:is(:hover,:focus-visible) svg {animation:muera-icon-turn 550ms ease both;}
+ nav a.active svg {animation:muera-icon-pop 600ms ease both;}
+ nav a:active svg {transform:scale(.92);}
+}
+@media (prefers-reduced-motion:reduce) {nav a svg{animation:none!important;transition:none!important;transform:none!important;}}

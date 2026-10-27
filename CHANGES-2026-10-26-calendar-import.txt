@@ -1,0 +1,31 @@
+2026-10-26 - Calendar: import weekly timetable from PDF (AI)
+- New "Import timetable" button on the Calendar page opens a dialog:
+  upload timetable PDF/image -> text read on device (pdf.js/OCR) -> AI (Groq
+  "timetable" mode) extracts the weekly class grid automatically -> review ->
+  Confirm updates the weekly timetable shown in the calendar. Merges with the
+  existing timetable; "Replace existing timetable" stays an explicit choice.
+  Original file is copied to the signed-in user's own Google Drive (same
+  opt-in flow as the Scanner); saving is paused until Drive is connected.
+- New files: src/components/timetable-import.tsx, src/lib/timetable-ai.ts.
+- scan.tsx now calls the shared aiExtractTimetable() helper (same behavior).
+- Source = Drive base backup + student-connect patches 0006/0007/0008 + this change.
+- Demo deploy also carries the navy-teal sidebar rule as assets/styles-sbgrad3.css
+  (same one-rule gradient as styles-sbgrad2.css, appended to the new build CSS).
+- No database migrations; timetable_slots.source_file_id (0005) is reused.
+2026-10-26: After EVERY demo deploy, re-apply navy-teal patch: copy assets/styles-sbgrad2.css into build and add <link rel="stylesheet" href="/assets/styles-sbgrad2.css" data-precedence="default"/> to index.html + _shell.html (demo meora.free.nf ONLY, never main).
+2026-10-26 - Learn: PDF stacks (demo meora.free.nf only)
+- Documents can carry an optional "stack" name so users remember which PDF is
+  which topic/subject. Migration 0009 adds documents.stack (text, <=100 chars).
+- Learn page: upload dialog has a Stack field (free text + dropdown of existing
+  stack names); the documents list groups under "STACK NAME (count)" headers;
+  each Drive-backed doc has an "open original PDF in your Google Drive" link.
+- Files stay in the signed-in user's own Drive ("MUeRA uploads", drive.file
+  scope). Per-user RLS unchanged; no public sharing, no Drive-wide indexing.
+- store.ts Doc.stack + cloud-sync.ts mapping both directions; learn.tsx UI.
+2026-10-26 - Learn: openable PDFs + user-managed stack arrangement (demo only)
+- Every document row has a labeled "Open PDF" button, and the document view has
+  a primary "Open original PDF" button; both open the user's own Drive copy.
+- Each document row has a "move to stack" dropdown (current stack preselected).
+- Stack group headers have rename (inline) and up/down reorder controls; order
+  persists in localStorage key muera:stack-order (per-device, not synced).
+- learn.tsx only; no new migrations (0009 stack column reused).

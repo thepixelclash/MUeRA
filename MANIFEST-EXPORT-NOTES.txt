@@ -1,0 +1,6 @@
+MUeRA source snapshot (Lovable project d625e329-bcfd-4619-b83c-8cf2025526d5)
+Copied as exact text from the Lovable Code tab on 25 Oct 2026 about 7:42 PM IST.
+Contains all source files shown in the editor (67 files incl. 47 shadcn ui components), except:
+ - public/favicon.ico (binary, cannot be copied as text; add any favicon)
+State: includes the partially applied "real data + AI" Build, which paused when the workspace ran out of free credits. Not a tested release.
+No database or storage (app uses browser storage). No API keys or secrets are in the archive.
